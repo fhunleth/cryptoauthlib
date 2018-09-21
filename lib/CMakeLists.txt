@@ -16,6 +16,7 @@ file(GLOB_RECURSE CRYPTO_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "crypto/*.c")
 file(GLOB HOST_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "host/*.c")
 file(GLOB JWT_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "jwt/*.c")
 file(GLOB PKCS11_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "pkcs11/*.c")
+file(GLOB_RECURSE ATCA_HDRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.h")
 
 # Add the basic sources to the library
 set(CRYPTOAUTH_SRC ${LIB_SRC} ${ATCACERT_SRC} ${BASIC_SRC} ${CRYPTO_SRC} ${HOST_SRC} ${JWT_SRC} hal/atca_hal.c )
@@ -88,4 +89,5 @@ endif()
 target_link_libraries(cryptoauth rt)
 endif()
 
-
+install(FILES ${ATCA_HDRS} DESTINATION include/atca)
+install(TARGETS cryptoauth DESTINATION lib)
