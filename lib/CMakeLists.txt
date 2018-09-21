@@ -6,6 +6,7 @@ option(ATCA_HAL_KIT_HID "Include the HID HAL Driver")
 option(ATCA_HAL_I2C "Include the I2C Hal Driver - Linux & MCU only")
 option(ATCA_PRINTF "Enable Debug print statements in library")
 option(ATCA_PKCS11 "Build PKCS11 Library")
+option(BUILD_SHARED_LIBS "Build as a shared library" ON)
 
 # Collect Library Sources
 file(GLOB LIB_SRC RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.c")
@@ -55,7 +56,7 @@ if(ATCA_PKCS11)
 set(CRYPTOAUTH_SRC ${CRYPTOAUTH_SRC} ${PKCS11_SRC} ${ATCACERT_DEF_SRC})
 endif()
 
-add_library(cryptoauth SHARED ${CRYPTOAUTH_SRC})
+add_library(cryptoauth ${CRYPTOAUTH_SRC})
 
 # Add Remaining Sources depending on target library type
 if(ATCA_PKCS11)
